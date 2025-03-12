@@ -1,19 +1,21 @@
-/* Your Name, Date, Learning Goal */
+/* Giselle Valdez 
+03/12/2025 
+*/
 // Add a comment to each "//" that you see. 
-int cols = 6;  // 
-int rows = 5;  // 
-Sprite[][] sprites; // 
+int cols = 5;  // for the colums 
+int rows = 5;  // for the rows 
+Sprite[][] sprites; // 2d array holding sprite frames 
 
-int numFrames = 9;  // 
-PImage[] spriteFrames; // 
-int frameDelay = 20;  // Speed of animation (higher = slower)
+int numFrames = 4;  // how many frames are in the sprite
+PImage[] spriteFrames; // puts in image to each row and colum 
+int frameDelay = 15;  // Speed of animation (higher = slower)
 
 void setup() {
   size(500, 500);
-  loadSpriteFrames();  //
+  loadSpriteFrames();  // loads the sprite frames 
   sprites = new Sprite[cols][rows];
 
-  // 
+  // iterating through the sprite objects
 
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
@@ -25,9 +27,9 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  background(255);
   
-  // 
+  // iterating through to create animation and show it 
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
       sprites[i][j].update();
@@ -36,11 +38,11 @@ void draw() {
   }
 }
 
-// 
+// loads in the sprite images 
 void loadSpriteFrames() {
   spriteFrames = new PImage[numFrames];
   for (int i = 0; i < numFrames; i++) {
-    spriteFrames[i] = loadImage("rabbit" + i + ".png"); // Ensure images are named _____0.png, _____1.png, etc.
+    spriteFrames[i] = loadImage("sprite_" + i + ".png"); // Ensure images are named _____0.png, _____1.png, etc.
   }
 }
 
@@ -49,8 +51,8 @@ class Sprite {
   float x, y;
   int currentFrame = 0;
   int frameCount = 0;
-  float size = 50; // 
-  float speedX = 0.75; // 
+  float size = 100; // controls the size of the sprite frame 
+  float speedX = 0.75; // the speed the images move through 
 
   Sprite(float x, float y) {
     this.x = x;
@@ -59,13 +61,13 @@ class Sprite {
 
 
   void update() {
-    // 
+    // updates the animation frame 
     frameCount++;
     if (frameCount % frameDelay == 0) {
         currentFrame = (currentFrame + 1) % numFrames;
     }
 
-    // 
+    // controls the speed 
     x += speedX;
 
     // 
